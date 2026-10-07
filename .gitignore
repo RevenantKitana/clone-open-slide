@@ -9,3 +9,14 @@ packages/cli/template/.agents/skills
 packages/core/e2e/.scratch
 playwright-report
 test-results
+
+# Generated outputs (keep templates and markdown/html/json configs, ignore large binary media)
+outputs/**/*.mp4
+outputs/**/*.mov
+outputs/**/*.wav
+outputs/**/*.mp3
+outputs/*/4-frames/*.png
+outputs/*/4-frames/*.jpg
+!outputs/**/.gitkeep
+!outputs/README.md
+

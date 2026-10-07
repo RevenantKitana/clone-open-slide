@@ -9,18 +9,29 @@ This skill standardizes the end-to-end workflow of transforming raw educational 
 
 ---
 
-## Deliverables per Workflow Run
+## Deliverables & Output Directory Structure
 
-Whenever the user asks to generate a video storyboard from a script (e.g. `kichban.md`), the agent must produce two synchronized artifacts:
+Tất cả output sinh nội dung **PHẢI** được lưu vào thư mục `outputs/<project-slug>/` theo chuẩn 5 thư mục:
 
-1. **`storyboard.json`** — Structured machine-readable manifest containing:
+```
+outputs/<project-slug>/
+├── 1-scripts/           # Kịch bản gốc, prompt, teleprompter voiceover text
+├── 2-storyboards/       # storyboard.json & <name>-storyboard.html (Director Canvas)
+├── 3-audio/             # File audio TTS theo từng scene & file voiceover gộp
+├── 4-frames/            # Ảnh chụp frame phân cảnh 1080x1920 (PNG)
+└── 5-videos/            # Video hoàn thiện (.mp4 9:16)
+```
+
+Whenever the user asks to generate a video storyboard from a script, the agent must produce:
+
+1. **`outputs/<slug>/2-storyboards/storyboard.json`** — Structured machine-readable manifest containing:
    - `aspectRatio`: `"9:16"`
    - `resolution`: `{ "width": 1080, "height": 1920 }`
    - `safeZones`: Top (240px), Bottom (380px), Right (120px)
    - `scenes`: Array of `{ id, title, duration (seconds), startTime, voiceover, visualCues }`
    - `totalDuration`: Total video duration in seconds (typically 50s–80s for short-form).
 
-2. **`<name>-storyboard.html`** (or `video-storyboard.html`) — Self-contained Interactive Director Canvas with:
+2. **`outputs/<slug>/2-storyboards/<name>-storyboard.html`** (or `director-canvas.html`) — Self-contained Interactive Director Canvas with:
    - **1080 × 1920 Stage**: Fixed 9:16 canvas centered and scaled to viewport.
    - **TikTok / Reels Safe Zone Overlay** (toggleable via UI button `Safe Zone`).
    - **Auto-Play Simulation**: Plays scene-by-scene with real-time progress bar and seconds counter.

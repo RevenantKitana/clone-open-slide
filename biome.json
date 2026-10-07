@@ -12,7 +12,8 @@
       "!**/node_modules",
       "!**/*.tsbuildinfo",
       "!**/*.svg",
-      "!*.html",
+      "!**/*.html",
+      "!outputs",
       "!packages/core/src/app/components/ui"
     ]
   },
